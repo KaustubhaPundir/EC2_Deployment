@@ -1,3 +1,4 @@
+require('dotenv').config();
 import path from 'path';
 import express from 'express';
 import bodyParser from 'body-parser';
@@ -20,5 +21,5 @@ app.use((req,res,next)=>{
     // res.status(404).send('<h1>404, request not found</h1>')
     res.status(404).sendFile(path.join(rootDir,'views','404.html'));
 })
-const port = 3001;
-app.listen(port, () => { console.log("Server running at http://localhost:3001/"); }); 
+const port = process.env.PORT || 3000;
+app.listen(port, () => { console.log(`Server running at ${port}`); }); 
