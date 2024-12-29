@@ -1,12 +1,17 @@
 import path from 'path';
 import express from 'express';
-import bodyParser from 'body-parser';
 import rootDir from './utils/pathUtil.js';
 // import hostHandler from './routes/host';
 import userrouter from './routes/user.js';
 import hostrouter from './routes/host.js';
+import bodyParser from 'body-parser';
 const __dirname = path.resolve('.');
 const app=express();
+app.set("view engine", "ejs");
+
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 app.use(express.static(path.join(rootDir,'public')))
 app.use((req,res,next)=>{
     console.log(__dirname);
