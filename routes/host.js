@@ -17,6 +17,18 @@ const contactSchema = {
 const Contact =
     mongoose.model("Housetst", contactSchema);
 
+hostrouter.get('/host', (req, res, next) => {
+    Contact.find({}).select({ "query": 1, "_id": 0})
+      .then(foundItems => {
+        res.send(`<h1>This is host</h1>
+            <h2>Houses are</h2>
+            ${foundItems}`)})
+      .catch(err => {
+          console.log(err);
+    });
+    
+});
+
 hostrouter.get('/host/add-home', (req, res, next) => {
     // res.send(`<h1>Add a home</h1>
     //     <form action='/host/add-home' method='POST'>
@@ -32,7 +44,7 @@ hostrouter.post('/host/add-home', (req, res, next) => {
         query: req.body.housename,
     });
     contact.save().then(res.sendFile(path.join(__dirname, '../', 'Proj_Deploy', 'views', 'homeaddedsuccess.html'))).catch();
-    
+
     console.log(req.body);
 })
 
