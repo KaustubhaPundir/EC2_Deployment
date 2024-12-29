@@ -10,12 +10,11 @@ mongoose.connect(
     useUnifiedTopology: true
   });
 const contactSchema = {
-  email: String,
   query: String,
 };
 const Contact =
   mongoose.model("Housetst", contactSchema);
-hostrouter.get('/add-home', (req, res, next) => {
+hostrouter.get('/host/add-home', (req, res, next) => {
   // res.send(`<h1>Add a home</h1>
   //     <form action='/host/add-home' method='POST'>
   //         <input type='text' placeholder='enter the home name' name='housename'/>
@@ -26,9 +25,11 @@ hostrouter.get('/add-home', (req, res, next) => {
 hostrouter.post('/host/add-home', (req, res, next) => {
   // res.send(`<h1>Home registered successfully</h1>
   //     <a href="/">Go back to homepage</a>`);
-  
+  const contact = new Contact({
+    query: req.body.housename,
+  });
+  contact.save().then(res.render("contact")).catch();
   res.sendFile(path.join(__dirname, '../', 'Proj_Deploy', 'views', 'homeaddedsuccess.html')); //file is send
   console.log(req.body);
-})
-
+});
 export default hostrouter;

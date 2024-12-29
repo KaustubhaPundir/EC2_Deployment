@@ -10,6 +10,7 @@ userrouter.get("/",(req,res,next)=>{
     //     <br>
     //     <a href="/host/add-home">Add home</a>`);
     res.sendFile(path.join(__dirname,'../','Proj_Deploy','views','homepage.html')); //file is send
+
 });
 
 export default userrouter;
