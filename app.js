@@ -9,7 +9,7 @@ import userrouter from './routes/user.js';
 import hostrouter from './routes/host.js';
 const __dirname = path.resolve('.');
 const app=express();
-app.use(express.static(path.join(rootDir,'public')))
+app.use(express.static(path.join(rootDir,'public')));
 app.use((req,res,next)=>{
     console.log(__dirname);
     console.log(req.url,req.method);
