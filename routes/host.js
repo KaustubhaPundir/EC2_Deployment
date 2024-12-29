@@ -3,7 +3,18 @@ import express from 'express';
 import mongoose from 'mongoose';
 const __dirname = path.resolve('.'); //done while using ES module as __dirname, __filename are not available in it
 const hostrouter = express.Router();
-
+mongoose.connect(
+  "mongodb://0.0.0.0:27017/testdb",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  });
+const contactSchema = {
+  email: String,
+  query: String,
+};
+const Contact =
+  mongoose.model("Housetst", contactSchema);
 hostrouter.get('/add-home', (req, res, next) => {
   // res.send(`<h1>Add a home</h1>
   //     <form action='/host/add-home' method='POST'>
@@ -15,18 +26,7 @@ hostrouter.get('/add-home', (req, res, next) => {
 hostrouter.post('/host/add-home', (req, res, next) => {
   // res.send(`<h1>Home registered successfully</h1>
   //     <a href="/">Go back to homepage</a>`);
-  mongoose.connect(
-    "mongodb://0.0.0.0:27017/testdb",
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true
-    });
-  const contactSchema = {
-    email: String,
-    query: String,
-  };
-  const Contact =
-    mongoose.model("Housetst", contactSchema);
+  
   res.sendFile(path.join(__dirname, '../', 'Proj_Deploy', 'views', 'homeaddedsuccess.html')); //file is send
   console.log(req.body);
 })
