@@ -15,6 +15,13 @@ hostrouter.get('/add-home',(req,res,next)=>{
 hostrouter.post('/host/add-home',(req,res,next)=>{
     // res.send(`<h1>Home registered successfully</h1>
     //     <a href="/">Go back to homepage</a>`);
+    mongoose.connect(
+      "mongodb://0.0.0.0:27017/testdb",
+      {
+          useNewUrlParser: true,
+          useUnifiedTopology: true
+      });
+  
     res.sendFile(path.join(__dirname,'../','Proj_Deploy','views','homeaddedsuccess.html')); //file is send
     console.log(req.body);
 })
