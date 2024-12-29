@@ -25,6 +25,8 @@ hostrouter.post('/host/add-home', (req, res, next) => {
     email: String,
     query: String,
   };
+  const Contact =
+    mongoose.model("Housetst", contactSchema);
   res.sendFile(path.join(__dirname, '../', 'Proj_Deploy', 'views', 'homeaddedsuccess.html')); //file is send
   console.log(req.body);
 })
